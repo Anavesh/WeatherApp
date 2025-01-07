@@ -2,6 +2,11 @@ import UIKit
 
 class SearchVC: UIViewController, UISearchBarDelegate {
     
+    // MARK: Variables and constants
+    let horizontalPadding: CGFloat = 20
+    let verticalSpacing: CGFloat = 20
+    let searchBarHeight: CGFloat = 60
+    
     // MARK: UI elements
     private let citySearchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -59,36 +64,37 @@ class SearchVC: UIViewController, UISearchBarDelegate {
         NSLayoutConstraint.activate([
             // Constraints for instructionLabel
             instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            instructionLabel.bottomAnchor.constraint(equalTo: citySearchBar.topAnchor, constant: -20),
-            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            instructionLabel.bottomAnchor.constraint(equalTo: citySearchBar.topAnchor, constant: -verticalSpacing),
+            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalPadding),
+            instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding),
             
             // Constraints for citySearchBar
             citySearchBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             citySearchBar.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            citySearchBar.heightAnchor.constraint(equalToConstant: 60),
-            citySearchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            citySearchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            citySearchBar.heightAnchor.constraint(equalToConstant: searchBarHeight),
+            citySearchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalPadding * 2),
+            citySearchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding * 2),
             
             // Constraints for errorDescriptionLabel
             errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            errorLabel.topAnchor.constraint(equalTo: citySearchBar.bottomAnchor, constant: 20),
-            errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            errorLabel.topAnchor.constraint(equalTo: citySearchBar.bottomAnchor, constant: verticalSpacing),
+            errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalPadding),
+            errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding)
         ])
     }
     
     // MARK: Search bar visual configurations
+    
     func setUpCitySearchBar() {
         citySearchBar.delegate = self
         
         // Setup textfield
         if let textField = citySearchBar.value(forKey:"searchField") as? UITextField {
-            textField.layer.cornerRadius = 10 // making the angles round
+            textField.layer.cornerRadius = 10
             textField.backgroundColor = .white
-            textField.layer.masksToBounds = true // applying the roundup of angles
+            textField.layer.masksToBounds = true
 
-            // Remove background white square around searchbar
+            // Remove background white square around search bar
             let backgroundView = UIView(frame: textField.bounds)
             backgroundView.backgroundColor = .white
             backgroundView.layer.cornerRadius = 10

@@ -2,9 +2,15 @@ import UIKit
 
 class WeatherAndNewsVC: UIViewController {
     
-    // MARK: Variables
+    // MARK: Variables and Constants
     private var weatherModel = WeatherViewModel()
     private let newsTableViewModel = NewsTableViewModel()
+    
+    let topPadding: CGFloat = 12
+    let weatherImageSize: CGFloat = 100
+    let tableViewSpacing: CGFloat = 20
+    let newsTableHeightMultiplier: CGFloat = 0.15
+    let weatherTableHeightMultiplier: CGFloat = 0.35
     
     // MARK: UI Elements
     
@@ -77,32 +83,31 @@ class WeatherAndNewsVC: UIViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             // City Name Label
-            cityNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            cityNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topPadding),
             cityNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
+
             // Weather Image
-            weatherImage.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 12),
+            weatherImage.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: topPadding),
             weatherImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            weatherImage.widthAnchor.constraint(equalToConstant: 100),
-            weatherImage.heightAnchor.constraint(equalToConstant: 100),
-            
+            weatherImage.widthAnchor.constraint(equalToConstant: weatherImageSize),
+            weatherImage.heightAnchor.constraint(equalToConstant: weatherImageSize),
+
             // Temperature Label
-            temperatureLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor, constant: 12),
+            temperatureLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor, constant: topPadding),
             temperatureLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
+
             // News TableView
-            newsTableView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 20),
+            newsTableView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: tableViewSpacing),
             newsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15),
-            
+            newsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: newsTableHeightMultiplier),
+
             // Weather TableView
-            weatherTableView.topAnchor.constraint(equalTo: newsTableView.bottomAnchor, constant: 20),
+            weatherTableView.topAnchor.constraint(equalTo: newsTableView.bottomAnchor, constant: tableViewSpacing),
             weatherTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             weatherTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             weatherTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            weatherTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35),
-         
+            weatherTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: weatherTableHeightMultiplier),
         ])
     }
     
