@@ -6,9 +6,3 @@ struct APIKeys {
 }
    
 
-struct ServiceURLs {
-   static let weatherURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Cordoba?unitGroup=uk&key=\(APIKeys.weatherAPIKey)&contentType=json"
-    
-    static let newsURL = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=\(APIKeys.newsAPIKey)"
-}
-

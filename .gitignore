@@ -1,0 +1,3 @@
+# Ignore configuration files
+*.xcconfig
+/Users/naira/Desktop/новый проект Xcode/WeatherApp/WeatherApp/Other/APIKeys.swift
